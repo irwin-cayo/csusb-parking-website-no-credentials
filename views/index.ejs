@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+    <title> CSUSB Parking Capacity</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron d-none d-sm-block">
+            <h1 class="jumbo text-center opening">Parking Lot Occupancy</h1>
+            <p id="jumbo-desc" class="text-center opening">Parking lot occupancy for parking lots at California State Univeristy, San Bernardino <a href="https://www.csusb.edu">CSUSB</a></p>
+        </div>
+
+        <div class="row">
+            <% var keys = Object.keys(parkingStructures) %>
+            <% keys.forEach(function(key){ %>
+                <% if (parkingStructures[key]) { %> 
+            <div class="col-12 col-sm-6">
+                <div class="card parking-lot mb-2">
+                    <img src="images/<%= key %>.PNG" class="card-img-top rounded-top" alt="Image Section">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Lot: <%= key %></h5> <!-- <%= parkingStructures[key] %> -->
+                        <p class="text-center">Available Parking Spaces: <span id="<%= key %>" class="card-text count"></span></p>
+                        <p>Check peak hours, patterns and more.</p>
+                        <a class="btn btn-sm btn-info" href="details/<%= key %>">More Info</a>
+                    </div>
+                </div>
+            </div>
+                <% } %>
+            <% }) %>
+        </div>
+    </div>
+
+    <script src="/javascripts/count.js"></script>
+    <% include partials/footer %>

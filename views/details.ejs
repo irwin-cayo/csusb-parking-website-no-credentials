@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <title>Details</title>
+</head>
+    <body>
+        <div class="container-fluid">
+            <h1 id="<%= location %>">Lot: <%= location %></h1>
+            <p class="desc"><%= lotVariables.description %> <span class="text-muted">Info is updated every minute. </span></p>
+            <div class="chart-container">
+                <canvas id="count-chart"></canvas>
+            </div>
+            <div class="desc">
+                <hr>
+                <h4>Live Tracking</h4>
+                <p>Number of vehicles currently in the lot: <span id="occupancy"><%= lotVariables.capacity_count%></span></p>
+                <p>Maximum Occupancy: <span id="max"><%= lotVariables.max_capacity %></span></p>
+                <p>Spaces available: <span id="available"><%= lotVariables.max_capacity - lotVariables.capacity_count%></span></p>
+                <p>The lot has seen activity as of: <span id="timestamp"></span></p>
+                <hr>
+                <h4>Patterns/Trends</h4>
+                <p>Explore patterns and trends for this parking lot.</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+                <canvas id="chart"></canvas>
+        </div>
+    <script src="/javascripts/graph.js">
+
+    </script>
+<% include partials/footer %>
